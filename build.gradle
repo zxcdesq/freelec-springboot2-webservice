@@ -1,0 +1,49 @@
+buildscript {
+    ext {
+        springBootVersion = '2.1.9.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group 'com.jojoldu.book'
+version '1.0.4-SNAPSHOT-'+new Date().format("yyyyMMddHHmmss")
+sourceCompatibility = 1.8   
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    implementation 'org.jetbrains:annotations:19.0.0'
+
+    /* 스프링 스타터*/
+    compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.projectlombok:lombok')
+    /*스프링 jpa*/
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    compile('org.springframework.boot:spring-boot-starter-mustache')
+    /*h2 데이터베이스*/
+    compile('com.h2database:h2')
+    /* 스프리시큐리티 oauth2 */
+    compile('org.springframework.boot:spring-boot-starter-oauth2-client')
+    compile('org.springframework.session:spring-session-jdbc')
+
+    /* 마리아DB */
+    compile("org.mariadb.jdbc:mariadb-java-client")
+
+    /*스프링부트 스타터 테스트*/
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+    testCompile("org.springframework.security:spring-security-test")
+}
